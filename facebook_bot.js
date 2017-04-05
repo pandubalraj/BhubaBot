@@ -24,6 +24,8 @@ controller.setupWebserver(process.env.PORT || process.env.port || 3000, function
 
 // thread settings
 controller.api.thread_settings.greeting('Welcome to ATUNE Event. I am ATUNE Bot to provide event details');
+controller.api.thread_settings.greeting('Hello {{user_name}}! Please meet our Facebook chatbot!');
+
 
 controller.api.thread_settings.get_started('start_payload');
 
@@ -71,7 +73,7 @@ function main_menu(convo) {
                 'template_type': 'generic',
                 'elements': [
                     {
-                        'title': 'ATUNE 2017',
+                        'title': 'ATUNE 2017 {{user_first_name}}',
                         'image_url': 'https://bhubabot.blob.core.windows.net/images/conference_1.png',
                         'subtitle': '',
                         'buttons': [
@@ -111,24 +113,24 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
     bot.startConversation(message, function(err, convo) {
         
 
-    // get user name
-    var user_name;
-    getUserName = function(response, convo) {
-    var usersPublicProfile = 'https://graph.facebook.com/v2.6/'+response.user.id + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + process.env.page_token;
-    request({
-        url: usersPublicProfile,
-        json: true // parse
-    }, function (error, response, body) {
-            if (!error && response.statusCode === 200) {
-                 botkit.debug('NAME', body.first_name);
-                 botkit.debug('NAME', body.last_name);
-                user_name = body.first_name;
-            }
-        });
-    };
+//     // get user name
+//     var user_name;
+//     getUserName = function(response, convo) {
+//     var usersPublicProfile = 'https://graph.facebook.com/v2.6/'+response.user.id + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + process.env.page_token;
+//     request({
+//         url: usersPublicProfile,
+//         json: true // parse
+//     }, function (error, response, body) {
+//             if (!error && response.statusCode === 200) {
+//                  botkit.debug('NAME', body.first_name);
+//                  botkit.debug('NAME', body.last_name);
+//                 user_name = body.first_name;
+//             }
+//         });
+//     };
         
         
-        convo.say('Hi '+user_name+', I am BhubaBot. Nice to meet you ☺ ')
+        convo.say('Hi , I am BhubaBot. Nice to meet you ☺ ')
         convo.say('Did you know, I am from Planet Mars - Elon Musk pulled me back in a SpaceX Falcon Rocket  ');
         convo.say('You know why? To give you Geeks some valuable info  and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas. OK. ');
         convo.say('Now that I know a little about Bhubaneshwar and also have managed to grasp a little bit of English, I might be able to help you.');

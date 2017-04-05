@@ -1,0 +1,28 @@
+{
+  "name": "facebook-eventbot",
+  "version": "0.0.1",
+  "description": "Building blocks for Building Bots",
+  "main": "facebook_bot.js",
+  "dependencies": {
+    "botkit": "^0.5.1",
+    "opn": "^4.0.2",
+    "request": "^2.81.0"
+  },
+  "scripts": {
+    "start": "node facebook_bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neetucompiler/fb_botkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neetucompiler/fb_botkit/issues"
+  },
+  "keywords": [
+    "bots",
+    "chatbots",
+    "facebook messenger"
+  ],
+  "author": "neetu",
+  "license": "MIT"
+}

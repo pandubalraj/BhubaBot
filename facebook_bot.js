@@ -114,7 +114,7 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
     // get user name
     var user_name;
     getUserName = function(response, convo) {
-    var usersPublicProfile = 'https://graph.facebook.com/v2.8/me' + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + process.env.page_token;
+    var usersPublicProfile = 'https://graph.facebook.com/v2.6/'+response.user + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + process.env.page_token;
     request({
         url: usersPublicProfile,
         json: true // parse

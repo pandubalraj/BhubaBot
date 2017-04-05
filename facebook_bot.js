@@ -149,10 +149,10 @@ controller.hears(again_payload, 'message_received,facebook_postback', function(b
 var event = ['^Conference Details$','^Event$','^conference$']
 controller.hears(event, 'message_received,facebook_postback', function(bot, message) {
 
-    bot.replyWithTyping(message, 'As you might already be knowing ATUNE is the ATU units annual networking event.');
-    bot.replyWithTyping(message, 'Three days of professional networking with associates across multiple functions.'); 
-    bot.replyWithTyping(message, 'This is going to be a great place to be for you to catapult your professional capabilities.');
-    bot.replyWithTyping(message, 'So yeah, what is it you would like to know about?');
+    bot.reply(message, 'As you might already be knowing ATUNE is the ATU units annual networking event.');
+    bot.reply(message, 'Three days of professional networking with associates across multiple functions.'); 
+    bot.reply(message, 'This is going to be a great place to be for you to catapult your professional capabilities.');
+    bot.reply(message, 'So yeah, what is it you would like to know about?');
         var attachment = {
                 'type': 'template',
                 'payload': {

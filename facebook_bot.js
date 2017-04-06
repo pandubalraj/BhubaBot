@@ -109,24 +109,6 @@ var welcome_message = ['^hi$','^start_payload$','^hello$','^start$','^hey$','^wh
 
 controller.hears(welcome_message, 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
-        
-
-    //  // get user name
-    // var test_name;
-    // getUserName = function(response, convo) {
-    // var usersPublicProfile = 'https://graph.facebook.com/v2.6/'+response.user+'?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + process.env.page_token;
-    // request({
-    //     url: usersPublicProfile,
-    //     json: true // parse
-    // }, function (error, response, body) {
-    //         if (!error && response.statusCode === 200) {
-    //              botkit.debug('NAME', body.first_name);
-    //              botkit.debug('NAME', body.last_name);
-    //             test_name = body;
-    //         }
-    //     });
-    // };
-        
         convo.say('Hi Geek, I am BhubaBot. Nice to meet you ☺ ')
         convo.say('Did you know, I am from Planet Mars - Elon Musk pulled me back in a SpaceX Falcon Rocket  ');
         convo.say('You know why? To give you Geeks some valuable info  and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas. OK. ');
@@ -148,12 +130,12 @@ controller.hears(again_payload, 'message_received,facebook_postback', function(b
 var event = ['^Conference Details$','^Event$','^conference$']
 controller.hears(event, 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
-
     convo.say('As you might already be knowing ATUNE is the ATU units annual networking event.');
-    convo.say( 'Three days of professional networking with associates across multiple functions.'); 
-    convo.say( 'This is going to be a great place to be for you to catapult your professional capabilities.');
-    convo.say( 'So yeah, what is it you would like to know about?');
-        var attachment = {
+    convo.say('Three days of professional networking with associates across multiple functions.'); 
+    convo.say('This is going to be a great place to be for you to catapult your professional capabilities.');
+    convo.say('So yeah, what is it you would like to know about?');
+        convo.ask({
+            attachment : {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -182,8 +164,9 @@ controller.hears(event, 'message_received,facebook_postback', function(bot, mess
                         }
                     ]
                 }
-            };
-});
+            }
+        });
+     });
 });
 
 // event_callback_menu
@@ -241,8 +224,10 @@ controller.hears(schedule, 'message_received,facebook_postback', function (bot, 
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS==================================================
 controller.hears(['^Other Details$',"^others$","^other$"], 'message_received,facebook_postback', function (bot, message) {
-    bot.reply(message,'Well, do you want to know more about')
-      var  attachment = {
+    bot.startConversation(message, function (err, convo) {
+    convo.say('Well, do you want to know more about')
+    convo.ask({
+        attachment : {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -271,10 +256,9 @@ controller.hears(['^Other Details$',"^others$","^other$"], 'message_received,fac
                         }
                     ]
                 }
-            } ;
-            bot.reply(message, {
-            attachment: attachment
-            });        
+            }
+    })
+    });        
 });
 
 function other_details_callback_menu(convo){
@@ -330,7 +314,7 @@ controller.hears(['^swon_details$','^swon$'], 'message_received,facebook_postbac
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.2 SWON DETAILS**************===================
 
 // ====================================== 1. Event Menu 1.3 OTHER DETAILS 1.3.3 ORGANIZING TEAM===================
-controller.hears(['organising_team','^organizer$','^organiser$',"^organizing team$","^organizing-team$",'^team$','^volunteer$'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['organising_team','^organizer$','^organiser$','^team$','^volunteer$',"^organizing team$"], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('You know, they are LOVELY and most approachable tribe in the universe.');
         convo.say('I am planning to take them along with me when humans begin to colonize Planet Mars.');
@@ -356,13 +340,16 @@ controller.hears(['organising_team','^organizer$','^organiser$',"^organizing tea
 // ====================================== Main Menu  2. Location==================================
 
 controller.hears(['^Location Details$','^Location$'], 'message_received,facebook_postback', function(bot, message) {
-    bot.reply(message,'Bhubaneshwar is one of the most historical places. I have been here a few decades back. ')
-    bot.reply(message,'Does the sentence "Home, Home Sweet Home" ring a bell? ');
-    bot.reply(message,'Yeah you are right. The movie ET.'); 
-    bot.reply(message,'Yeah that was me. Steven Spielberg had earlier introduced me to the world as ET.  Had been to Bhubaneshwar in that Avatar. The place has changed a lot. Lots of great places to go around.');
-    bot.reply(message,'Sorry, I keep talking a lot. Maybe I am fit to be a Manager in an IT firm ');
-    bot.reply(message,'OK, Let me know what you would like to know more about');
-     var attachment =  {
+    bot.startConversation(message, function (err, convo) {
+
+    convo.say('Bhubaneshwar is one of the most historical places. I have been here a few decades back. ')
+    convo.say('Does the sentence "Home, Home Sweet Home" ring a bell? ');
+    convo.say('Yeah you are right. The movie ET.'); 
+    convo.say('Yeah that was me. Steven Spielberg had earlier introduced me to the world as ET.  Had been to Bhubaneshwar in that Avatar. The place has changed a lot. Lots of great places to go around.');
+    convo.say('Sorry, I keep talking a lot. Maybe I am fit to be a Manager in an IT firm ');
+    convo.say('OK, Let me know what you would like to know more about');
+    convo.ask({
+     attachment : {
                 'type': 'template',
                 'payload': {
                     'template_type': 'generic',
@@ -390,10 +377,9 @@ controller.hears(['^Location Details$','^Location$'], 'message_received,facebook
                         }
                     ]
                 }
-            };
-            bot.reply(message, {
-            attachment: attachment
-            });  
+            }
+    });
+   });
 });
 
 // callback main_menu_location
@@ -786,7 +772,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
                      'elements': [      
                          {      
                              'title': 'Travel',     
-                             'image_url': 'http://manchestershambhala.org/wordpress/wp-content/uploads/2013/03/Who-am-I.jpg',       
+                             'image_url': 'https://bhubabot.blob.core.windows.net/images/travel.jpg',       
                              'buttons': [       
                                  {      
                                     'type': 'postback',     

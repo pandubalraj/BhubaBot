@@ -147,11 +147,12 @@ controller.hears(again_payload, 'message_received,facebook_postback', function(b
 // ====================================== Main Menu  1. Event================================
 var event = ['^Conference Details$','^Event$','^conference$']
 controller.hears(event, 'message_received,facebook_postback', function(bot, message) {
+    bot.startConversation(message, function(err, convo) {
 
-    bot.reply(message, 'As you might already be knowing ATUNE is the ATU units annual networking event.');
-    bot.reply(message, 'Three days of professional networking with associates across multiple functions.'); 
-    bot.reply(message, 'This is going to be a great place to be for you to catapult your professional capabilities.');
-    bot.reply(message, 'So yeah, what is it you would like to know about?');
+    convo.say('As you might already be knowing ATUNE is the ATU units annual networking event.');
+    convo.say( 'Three days of professional networking with associates across multiple functions.'); 
+    convo.say( 'This is going to be a great place to be for you to catapult your professional capabilities.');
+    convo.say( 'So yeah, what is it you would like to know about?');
         var attachment = {
                 'type': 'template',
                 'payload': {
@@ -182,9 +183,6 @@ controller.hears(event, 'message_received,facebook_postback', function(bot, mess
                     ]
                 }
             };
-            bot.reply(message, {
-               attachment: attachment
-            });
 });
 
 // event_callback_menu

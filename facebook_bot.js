@@ -184,6 +184,7 @@ controller.hears(event, 'message_received,facebook_postback', function(bot, mess
                 }
             };
 });
+});
 
 // event_callback_menu
 function event_callback_menu(convo){

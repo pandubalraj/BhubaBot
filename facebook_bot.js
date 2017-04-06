@@ -110,9 +110,24 @@ var welcome_message = ['^hi$','^start_payload$','^hello$','^start$','^hey$','^wh
 controller.hears(welcome_message, 'message_received,facebook_postback', function(bot, message) {
     bot.startConversation(message, function(err, convo) {
         
-       
+
+    //  // get user name
+    // var test_name;
+    // getUserName = function(response, convo) {
+    // var usersPublicProfile = 'https://graph.facebook.com/v2.6/'+response.user+'?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + process.env.page_token;
+    // request({
+    //     url: usersPublicProfile,
+    //     json: true // parse
+    // }, function (error, response, body) {
+    //         if (!error && response.statusCode === 200) {
+    //              botkit.debug('NAME', body.first_name);
+    //              botkit.debug('NAME', body.last_name);
+    //             test_name = body;
+    //         }
+    //     });
+    // };
         
-        convo.say('Hi, I am BhubaBot. Nice to meet you ☺ ')
+        convo.say('Hi Geek, I am BhubaBot. Nice to meet you ☺ ')
         convo.say('Did you know, I am from Planet Mars - Elon Musk pulled me back in a SpaceX Falcon Rocket  ');
         convo.say('You know why? To give you Geeks some valuable info  and also, to savor the lovely Bhubaneshwar delicacies- Especially the Rosgollas. OK. ');
         convo.say('Now that I know a little about Bhubaneshwar and also have managed to grasp a little bit of English, I might be able to help you.');
@@ -167,7 +182,7 @@ controller.hears(event, 'message_received,facebook_postback', function(bot, mess
                     ]
                 }
             };
-            bot.replyWithTyping(message, {
+            bot.reply(message, {
                attachment: attachment
             });
 });

@@ -130,10 +130,55 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
 
 // ========================= option after introduction ========================================================================
 function initialconvo(convo) {
-    convo.say('I will be happy to tell you about Bhubaneshwar "The City Of Temples"');
-    convo.say('This is a lovely place having a lot of history behind it. Food is awesome and a fantastic weather in April');
-    convo.say('It has a great eateries wherein you could savor the original tastes of Odisha');
-    convo.say('And don’t forget about shopping. You can get local styles of Sarees (The Indian Wrap Around) and Dhotis. I can tell you the best place to purchase these before you travel back home.');
+     convo.say('This is a lovely place having a lot of history behind it. Food is awesome and a fantastic weather in April');
+     convo.say('It has a great eateries wherein you could savor the original tastes of Odisha');
+     convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                            'title': 'Rasagolas',
+                            'image_url': 'http://3.bp.blogspot.com/-M914D8ReosQ/UbxuvHfT4kI/AAAAAAAAHCs/hJn2JaZmXRM/s640/IMG_0977.JPG'
+                        }, {
+                            "title": "Mishti Doi",
+                            "image_url": "https://ishitaunblogged.files.wordpress.com/2014/05/42.jpg?w=594&h=887"
+                        }, {
+                            "title": "Arisa Sweet",
+                            "image_url": "http://www.indianetzone.com/photos_gallery/81/Arisa_Pitha.jpg"
+                        },
+                        {
+                            "title": "Modaka",
+                            "image_url": "http://www.indianetzone.com/photos_gallery/93/1__Modaka_Oriya_Recipe.jpg"
+                        }
+                    ]
+                }
+            }
+    });     
+    convo.say('And don’t forget about shopping. You can get local styles of Sarees (The Indian Wrap Around) and Dhotis.');
+     convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                            'title': 'Tussar Silk Sarees',
+                            'image_url': 'https://beautyballs.files.wordpress.com/2012/01/scan00021.jpg?w=640&h=460'
+                        }, {
+                            "title": "Paithni Sarees",
+                            "image_url": "http://www.indianetzone.com/photos_gallery/68/4_Paithani_Sarees.jpg"
+                        }, {
+                            "title": "Sambalpuri Silk Saree",
+                            "image_url": "http://www.indianetzone.com/photos_gallery/68/3_Sambalpuri_Saree.jpg"
+                        },
+                        {
+                            "title": "Pochampally Ikat Saree",
+                            "image_url": "http://www.indianetzone.com/photos_gallery/89/1_Pochampally_Ikat_Saree.jpg"
+                        }
+                    ]
+                }
+            }
+    });
     main_menu(convo);
 };
 controller.hears(["first"], 'message_received,facebook_postback', function (bot, message) {
@@ -218,7 +263,7 @@ controller.hears(event, 'message_received,facebook_postback', function (bot, mes
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Local Attractions in Bhubaneshwar',
-                        'image_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Talasari_Beach_Dunes.jpg/220px-Talasari_Beach_Dunes.jpg',
+                        'image_url': 'http://www.manishjaishree.com/wp-content/uploads/2013/09/Picture21-1024x582.jpg',
                         'subtitle': '',
                         'buttons': [{
                                 'type': 'postback',
@@ -378,9 +423,9 @@ controller.hears(attraction, 'message_received,facebook_postback', function (bot
 // ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.1. Kunark Sun Temple ====================
 controller.hears(['^konark$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('You dont get to see amazing life forms as you see here. ')
-        convo.say('It has a botanical garden and has been declared a sanctuary.')
-        convo.say('The purpose of your life will be fullfilled only if you step into this Park. So please plan accordingly')
+        convo.say('Konark Sun Temple was built in the 13th Century and is among the Seven Wonders of India. It’s also a UNESCO World Heritage Site. ')
+        convo.say('Did you know an interesting fact? The wheels of the temple are sundials which can be used to calculate time accurately to a minute including day and night!!!')
+        convo.say('😲');
         convo.ask({
             'attachment': {
                 'type': 'template',
@@ -400,6 +445,25 @@ controller.hears(['^konark$'], 'message_received,facebook_postback', function (b
 
             }
         });
+        convo.ask({
+            'attachment': {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Konark Sun Temple Map',
+                        'image_url': 'https://maps.googleapis.com/maps/api/staticmap?center=konark+sun+temple&zoom=12&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:small%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple',
+                        'subtitle': 'The temple is UNESCO World Heritage Site.',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.google.co.in/maps/place/Konark+Sun+Temple/@19.8876003,86.0923477,17z/data=!3m1!4b1!4m5!3m4!1s0x3a19f2a097819bbf:0xed9983ca391e3247!8m2!3d19.8875953!4d86.0945364?hl=en (https://www.google.co.in/maps/place/Konark+Sun+Temple/@19.8876003,86.0923477,17z/data=%213m1%214b1%214m5%213m4%211s0x3a19f2a097819bbf:0xed9983ca391e3247%218m2%213d19.8875953%214d86.0945364?hl=en)",
+                            "title": "Click here to view it on google maps.. "
+                        } ]
+                    }]
+                }
+
+            }
+        });
         tourist_callback_menu(convo)
     });
 });
@@ -409,8 +473,7 @@ controller.hears(['^konark$'], 'message_received,facebook_postback', function (b
 controller.hears(['^lingaraja$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('Dont miss the Lingaraja Temple - Amazing architecture')
-        convo.say('Its the most prominant mark of the city. Do take selfies and post it on Whatsapp.')
-        convo.say('Else you will not be considered Human anymore ')
+        convo.say('This is a great place to visit as well. It represents the quintessence of the Kalinga Architecture and is the most prominent mark of the city. ')
         convo.ask({
             'attachment': {
                 'type': 'template',
@@ -430,6 +493,25 @@ controller.hears(['^lingaraja$'], 'message_received,facebook_postback', function
 
             }
         });
+        convo.ask({
+            'attachment': {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Lingaraja temple',
+                        'image_url': 'https://maps.googleapis.com/maps/api/staticmap?center=lingaraja+temple&zoom=15&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:small%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Clingaraja+temple',
+                        'subtitle': 'Temple is the most prominent mark of the city.Is the largest temple i the city..',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.google.co.in/maps/place/Lingaraj+Temple/@20.2382433,85.8315622,17z/data=!3m1!4b1!4m5!3m4!1s0x3a19a726c8ffc807:0x212845f89456a2cd!8m2!3d20.2382383!4d85.8337509?hl=en (https://www.google.co.in/maps/place/Lingaraj+Temple/@20.2382433,85.8315622,17z/data=%213m1%214b1%214m5%213m4%211s0x3a19a726c8ffc807:0x212845f89456a2cd%218m2%213d20.2382383%214d85.8337509?hl=en)",
+                            "title": "Click here to view it on google maps.. "
+                        }, ]
+                    }]
+                }
+
+            }
+        });
         tourist_callback_menu(convo)
     });
 });
@@ -440,11 +522,7 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
     bot.startConversation(message, function (err, convo) {
         convo.say('I learnt natural caves were created without hand or shaping tools.')
         convo.say('Many Saintly embodiments takes shelter here to realize true nature with the undeterred self. ')
-        convo.say('Even your earthly being Alibaba prospered by snooping into the cave with magical word where the treasures robbed by folly Thieves were stored.')
-        convo.say('You can also snoop out a secret code and in Udayagiri and Khandhagiri caves and share it to me..')
-        convo.say('Not to forget, this is a mind boggling place. It is an archeological gem. ')
-        convo.say('Its partly natural and partly artificial ')
-        convo.say('Hmmm, should I say "Hybrid" so that you Techie creatures understand better :) Well go see it to figure it yourself')
+        convo.say('These caves are partly natural and party artificial and were believed to be carved out as residential blocks for Jain monks in 2nd Century BC');
         convo.ask({
             'attachment': {
                 'type': 'template',
@@ -458,6 +536,25 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
                             "type": "web_url",
                             "url": "https://en.wikipedia.org/wiki/Udayagiri_and_Khandagiri_Caves",
                             "title": "View More Details... "
+                        }, ]
+                    }]
+                }
+
+            }
+        });
+        convo.ask({
+            'attachment': {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Udayagiri and Khandagiri caves',
+                        'image_url': 'https://maps.googleapis.com/maps/api/staticmap?center=udaygiri+and+khandigiri&zoom=13&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:small%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Clingaraja+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cudaygiri+and+khandigiri&markers=size:small%7Ccolor:0xff0000%7Clabel:1%7Cudaygiri+and+khandigiri&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cudaygiri+and+khandigiri',
+                        'subtitle': 'Theses caves are partly natural and partly artificial caves of archaeological, historical and religious importance.. ',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.google.co.in/maps/place/Udayagiri+Jain+Caves/@20.2631202,85.7835363,17z/data=!3m1!4b1!4m5!3m4!1s0x3a19a7ec9910c597:0xc1d179a6679058f3!8m2!3d20.2631152!4d85.785725?hl=en",
+                            "title": "Click here to view it on google maps.. "
                         }, ]
                     }]
                 }
@@ -534,7 +631,7 @@ controller.hears(['^mayfair$'], 'message_received,facebook_postback', function (
         convo.say('And by the way, did you know, it has a well-equipped gymnasium and a lovely pool? ');
         convo.say('Oh yeah, forgot to mention, it is very vibrant at night :)  ');
         convo.say('Just Check this : http://www.mayfairhotels.com/ for more details');
-        convo.say('Let me take you to the Gallery');
+        convo.say('Let me take you to the Gallery 😎');
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -577,17 +674,17 @@ controller.hears(['^others$'], 'message_received,facebook_postback', function (b
                 'buttons': [{
                         'type': 'postback',
                         'title': 'Weather',
-                        'payload': 'weather'
+                        'payload': 'climate'
                     },
                     {
                         'type': 'postback',
                         'title': 'Night Life',
-                        'payload': 'flight_timings'
+                        'payload': 'night'
                     },
                     {
                         'type': 'postback',
                         'title': 'Local Travel',
-                        'payload': 'flight_status'
+                        'payload': 'travel'
                     }
                 ]
             }]
@@ -621,9 +718,9 @@ function others_callback_menu(convo) {
     });
 };
 // ==================================== others_callback_menu ENDS ========================================================
-
+    
 // ============================ Main Menu 3. Others 3.1. Weather =========================================================     
-controller.hears(['^weather$', '^climate$', "^temperature$", "^weather condition$"], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^climate$', "^temperature$", '^weather$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -641,7 +738,97 @@ controller.hears(['^weather$', '^climate$', "^temperature$", "^weather condition
         others_callback_menu(convo);
     });
 });
-// ============================== Main Menu 3. Others 3.1. Weather ENDS ==================================================    
+// ============================== Main Menu 3. Others 3.1. Weather ENDS ==================================================
+
+// ====================================== Main Menu 3. Others 3.2.Night Life ===============================================      
+controller.hears(['^night$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.say('want to get crazy and adventurous at night!You can try out the following places');
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Xstacy Lounge',
+                        'image_url': 'http://www.kosovoguide.com/repository/images/168/DSC06192_5816_thmb4.JPG',
+                        'subtitle': 'Xstacy lounge is a very hot and happening club that is usually filled with youngsters ',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.zomato.com/bhubaneswar/club-xstacy-chandrasekharpur/reviews",
+                            "title": "Click here to know its reviews..... "
+                        }]
+                    },{
+                        'title': 'Plaza Club - Swosti Premium',
+                        'image_url': 'http://www.kosovoguide.com/repository/images/168/DSC06189_5814_thmb4.JPG',
+                        'subtitle': 'The club comes with a discotheque, indoor games like pool, billiards, indoor gulf, skee ball and regular family program packages which make it a day/night hot spot',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.zomato.com/bhubaneswar/plaza-club-swosti-premium-jayadev-vihar-bhubaneshwar/reviews",
+                            "title": "Click here to know its reviews...... "
+                        }]
+                    },{
+                        'title': '10 Downing Street',
+                        'image_url': 'https://www.budapestindex.com/files/story/budapest-jam-pub2.jpg',
+                        'subtitle': ' It is one of the most happening places of Bhubaneswar. It is broadly known as TDS among the nightlife community',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "http://www.jantareview.com/Bhubaneswar/biz_9033/10-Downing-Street",
+                            "title": "Click here to know its reviews...... "
+                        }]
+                    }]
+                }
+            }
+        });
+    });   
+});
+// ======================================= Main Menu 3. Others 3.2.Night Life ENDS =========================================
+
+// ====================================== Main Menu 3. Others 3.3.Local travel ===============================================      
+controller.hears(['^travel$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+       convo.say('Want to get crazy and adventurous at night!You can try out the following places');
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Ekamra Haat',
+                        'image_url': 'https://upload.wikimedia.org/wikipedia/commons/7/75/Odia_Handicraft_At_Ekamra_haat_Bhubaneswar.jpg',
+                        'subtitle': 'It is has nice ambience and very quite place ',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.tripadvisor.in/ShowUserReviews-g297661-d4138735-r317160648-Ekamra_Kanan-Bhubaneswar_Odisha.html",
+                            "title": "Click here to know its reviews by Tripadvisor..... "
+                        }]
+                    },{
+                        'title': 'Regional Plant Resource Centre (aka Botanical Garden)',
+                        'image_url': 'https://c1.staticflickr.com/3/2893/10806912666_15b31d2e8f_n.jpg',
+                        'subtitle': ' Enjoy the company of a galaxy of plants and flowers from around the world and no one\'s gonna bother you there',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.tripadvisor.in/ShowUserReviews-g297661-d4155055-r416020048-Regional_Plant_Resource_Centre-Bhubaneswar_Odisha.html",
+                            "title": "Click here to know its reviews by Tripadvisor....."
+                        }]
+                    },{
+                        'title': 'Nandankanan',
+                        'image_url': 'http://www.indianetzone.com/photos_gallery/15/NandankananZP_8147.jpg',
+                        'subtitle': ' Nanadanakan is not a zoo, rather  it\'s a zoological garden.It has acres and acres of greenery.You\'ll love it',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.tripadvisor.in/ShowUserReviews-g297661-d1206653-r347617728-Nandankanan_Zoological_Park-Bhubaneswar_Odisha.html",
+                            "title": "Click here to know its reviews by Tripadvisor....."
+                        }]
+                    }]
+                }
+            }
+        });  
+    });
+});
+// ======================================= Main Menu 3. Others 3.3.Local travel ENDS =========================================
+
+
 // ============================================ TRIAL=====================================================================       
 
 controller.hears(['quick'], 'message_received', function (bot, message) {

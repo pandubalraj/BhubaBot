@@ -30,18 +30,18 @@ controller.api.thread_settings.get_started('start_payload');
 // default main menu for the facebook menu button
 controller.api.thread_settings.menu([{
         "type": "postback",
-        "title": "Event",
-        "payload": "Conference Details"
+        "title": "Local Attractions",
+        "payload": "local attractions"
     },
     {
         "type": "postback",
-        "title": "Location",
-        "payload": "Location Details"
+        "title": "Accomodations",
+        "payload": "accomodations"
     },
     {
         "type": "postback",
-        "title": "Travel",
-        "payload": "Travel"
+        "title": "Others",
+        "payload": "others"
     },
 ]);
 
@@ -595,7 +595,7 @@ controller.hears(['^accomodations$', '^stay$', '^rooms$', '^room details$', '^ac
                     'elements': [{
                         'title': 'Accomodation Hotels',
                         'image_url': 'http://farm6.staticflickr.com/5297/5493666299_782b25d2f7_z.jpg',
-                        'subtitle': 'Theses caves are partly natural and partly artificial caves of archaeological, historical and religious importance.. ',
+                        'subtitle': '',
                         "buttons": [{
                            'type': 'postback',
                             'title': 'Trident Hotel',
@@ -620,6 +620,29 @@ controller.hears(['^trident$'], 'message_received,facebook_postback', function (
         convo.say('Nestled in the heart of Jaidev Vihar, Trident Bhubaneswar Hotel is an ideal spot from which to discover Bhubaneswar ');
         convo.say('The hotel is not too far from the city center: just 03.00 Km away, and it normally takes about 25 minutes to reach the airport. ');
         convo.say('Let me take you to the Gallery');
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                            'title': 'Aerial View of Cottages with Lagoon',
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/hotel_1.png'
+                        }, {
+                            "title": "Evening View of Lagoon",
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_2.png"
+                        }, {
+                            "title": "Lobby Mayfair Lagoon",
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_3.png"
+                        },
+                        {
+                            "title": "Evening View MAYFAIR Lagoon",
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_4.png"
+                        }
+                    ]
+                }
+            }
+        });
         main_menu(convo);
     });
 });

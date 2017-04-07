@@ -70,7 +70,7 @@ function main_menu(convo) {
                 'template_type': 'generic',
                 'elements': [{
                     'title': 'Bhubaneshwar-"City of Temples"',
-                    'image_url': 'https://bhubabot.blob.core.windows.net/images/conference_1.png',
+                    'image_url': 'http://www.indianetzone.com/photos_gallery/84/2_Mukteswara_Temple_4.jpg',
                     'subtitle': '',
                     'buttons': [{
                             'type': 'postback',
@@ -105,14 +105,52 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
         convo.say('Hi Geek, I am Bhuba-Bot. Nice to meet you ☺ ');
         convo.say('Namascara and Swaagta to my city Bhubaneshwar');
         convo.say('This is how we say hello and welcome in oriya.........language we speak here!! ☺');
-        convo.say('I will be happy to tell you about Bhubaneshwar "The City Of Temples"');
-        convo.say('This is a lovely place having a lot of history behind it. Food is awesome and a fantastic weather in April');
-        convo.say('It has a great eateries wherein you could savor the original tastes of Odisha');
-        convo.say('And don’t forget about shopping. You can get local styles of Sarees (The Indian Wrap Around) and Dhotis. I can tell you the best place to purchase these before you travel back home.');
-        main_menu(convo);
+        convo.ask({
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Are you gonna be bhubaneshwar First time???",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "yeah",
+                        "payload": "first"
+                    }, {
+                        "type": "postback",
+                        "title": "No",
+                        "payload": "not first"
+                    }]
+                }
+            }
+        });
+        
     });
 });
 // ========================= Hi,start_payload ENDS ============================================================================
+
+// ========================= option after introduction ========================================================================
+function initialconvo(convo) {
+    convo.say('I will be happy to tell you about Bhubaneshwar "The City Of Temples"');
+    convo.say('This is a lovely place having a lot of history behind it. Food is awesome and a fantastic weather in April');
+    convo.say('It has a great eateries wherein you could savor the original tastes of Odisha');
+    convo.say('And don’t forget about shopping. You can get local styles of Sarees (The Indian Wrap Around) and Dhotis. I can tell you the best place to purchase these before you travel back home.');
+    main_menu(convo);
+};
+controller.hears(["first"], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.say('No worries,I can introduce you the City');
+        initialconvo(convo);
+    });
+});
+
+controller.hears(["not first"], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.say('Oh great then its going to be more friendly.. ');
+        convo.say('Still i can assist you for few things');
+        initialconvo(convo);
+    });
+});
+// ========================= option after introduction ENDS ===================================================================
 
 // ================================= again_payload for ========================================================================
 var again_payload = ["again_payload", "^main menu$", "^index$", "^menu$", "^content$"];
@@ -180,7 +218,7 @@ controller.hears(event, 'message_received,facebook_postback', function (bot, mes
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Local Attractions in Bhubaneshwar',
-                        'image_url': 'https://bhubabot.blob.core.windows.net/images/conference.jpg',
+                        'image_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Talasari_Beach_Dunes.jpg/220px-Talasari_Beach_Dunes.jpg',
                         'subtitle': '',
                         'buttons': [{
                                 'type': 'postback',
@@ -306,8 +344,7 @@ var attraction = ['^tourist spots$', "^sight seeing$", "^tourist$", "^place to v
 controller.hears(attraction, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('I am still awestruck at the marvelous creations in this part of the Universe.')
-        convo.say('I am running multiple advanced algorithms across multiple cloud vendors in trying to figure out “The Master Algorithm” used by the Creator. Hopefully the algorithm will help me understand time travel and destiny. ');
-        convo.say('I am still not done. However I wisely recommend to Visit Lingaraja Temple and suggest me a cue.')
+        convo.say('However I wisely recommend to Visit Lingaraja Temple and suggest me a cue.')
         convo.ask({
             'attachment': {
                 'type': 'template',
@@ -435,11 +472,68 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
 // ====================================== Main Menu  2.Accomodations ===============================================================
 controller.hears(['^accomodations$', '^stay$', '^rooms$', '^room details$', '^acomodation$', '^accommodation$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
+          convo.ask({
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Accomodation Details",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "Trident Hotel",
+                        "payload": "trident"
+                    }, {
+                        "type": "postback",
+                        "title": "Mayfair Hotel",
+                        "payload": "mayfair"
+                    }]
+                }
+            }
+        });
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Accomodation Hotels',
+                        'image_url': 'http://farm6.staticflickr.com/5297/5493666299_782b25d2f7_z.jpg',
+                        'subtitle': 'Theses caves are partly natural and partly artificial caves of archaeological, historical and religious importance.. ',
+                        "buttons": [{
+                           'type': 'postback',
+                            'title': 'Trident Hotel',
+                            'payload': 'trident'
+                        },{
+                            'type': 'postback',
+                            'title': 'Mayfair Hotel',
+                            'payload': 'mayfair'
+                        }
+                         ]
+                    }]
+                    ]
+                }
+            }
+        });
+    });
+});
+//==================================== Main Menu  2.Accomodations ENDS =====================================
+// ====================================== Main Menu  2.Accomodations 2.1. Trident Hotel ===============================================================
+controller.hears(['^trident$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.say('The Trident Hotel is a 5 Star Delux hotel. It offers world class facilities. ');
+        convo.say('Nestled in the heart of Jaidev Vihar, Trident Bhubaneswar Hotel is an ideal spot from which to discover Bhubaneswar ');
+        convo.say('The hotel is not too far from the city center: just 03.00 Km away, and it normally takes about 25 minutes to reach the airport. ');
+        convo.say('Let me take you to the Gallery');
+        main_menu(convo);
+    });
+});
+//==================================== Main Menu  2.Accomodations 2.1. Trident Hotel ENDS =====================================
+// ====================================== Main Menu  2.Accomodations 2.2.Mayfair ===============================================================
+controller.hears(['^mayfair$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
         convo.say('The Mayfair hotel is a 5 Star Delux hotel. It offers world class facilities. ');
         convo.say('And by the way, did you know, it has a well-equipped gymnasium and a lovely pool? ');
         convo.say('Oh yeah, forgot to mention, it is very vibrant at night :)  ');
-        convo.say('It is so vibrant that I could spot this hotel from Planet Mars! ');
-        convo.say('But trust me, it’s a great place');
         convo.say('Just Check this : http://www.mayfairhotels.com/ for more details');
         convo.say('Let me take you to the Gallery');
         convo.ask({
@@ -468,7 +562,8 @@ controller.hears(['^accomodations$', '^stay$', '^rooms$', '^room details$', '^ac
         main_menu(convo);
     });
 });
-//==================================== Main Menu  2.Accomodations ENDS =====================================
+//==================================== Main Menu  2.Accomodations  2.2.Mayfair ENDS =====================================
+
 
 // ====================================== Main Menu 3. Others ===============================================      
 controller.hears(['^others$'], 'message_received,facebook_postback', function (bot, message) {
@@ -479,7 +574,7 @@ controller.hears(['^others$'], 'message_received,facebook_postback', function (b
             'template_type': 'generic',
             'elements': [{
                 'title': 'Other Details',
-                'image_url': 'https://bhubabot.blob.core.windows.net/images/travel.jpg',
+                'image_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Malatipatpur_Bus_Stand.jpg/400px-Malatipatpur_Bus_Stand.jpg',
                 'buttons': [{
                         'type': 'postback',
                         'title': 'Weather',

@@ -510,7 +510,6 @@ controller.hears(['^accomodations$', '^stay$', '^rooms$', '^room details$', '^ac
                         }
                          ]
                     }]
-                    ]
                 }
             }
         });

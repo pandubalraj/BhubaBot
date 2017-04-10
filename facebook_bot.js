@@ -288,7 +288,7 @@ function attractions_callback_menu(convo) {
 var event = ['^local attractions$', '^Attractions$']
 controller.hears(event, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('By the way do you something about Bhubaneshwar!!');
+        convo.say('By the way do you know something about Bhubaneshwar!!');
         convo.say('It was ancient temple of Kalinga and Dhauli where the famous battle was fought between Emperor Ashoka and the Kalinga army');
         convo.say('So yeah, what is it you would like to know about?');
         convo.ask({
@@ -424,7 +424,6 @@ var attraction = ['^tourist spots$', "^sight seeing$", "^tourist$", "^place to v
 controller.hears(attraction, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('I am still awestruck at the marvelous creations in this part of the Universe.')
-        convo.say('However I wisely recommend to Visit Lingaraja Temple and suggest me a cue.')
         convo.ask({
             'attachment': {
                 'type': 'template',
@@ -741,7 +740,6 @@ controller.hears(['^trident$'], 'message_received,facebook_postback', function (
     bot.startConversation(message, function (err, convo) {
         convo.say('A true 5 star with the attention to the detail, elegant service and absolutely stunning cuisine');
         convo.say('Trident Bhubaneswar is a 15-minute drive from Bhubaneswar Airport. Bhubaneswar Railway Station is 6 km away');
-        convo.say('This property is also rated for the best value in Bhubaneshwar!');
         convo.say('Let me take you to the Gallery');
         convo.ask({
             attachment: {

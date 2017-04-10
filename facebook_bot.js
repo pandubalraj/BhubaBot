@@ -96,6 +96,14 @@ function main_menu(convo) {
         convo.next();
     });
 };
+function getout(convo){
+                    convo.say('You wanna quit so soon!');
+                    convo.say('okay bubyeeee ... see you soon then');
+                    convo.next();
+                    setTimeout(function () {
+                        process.exit();
+                    }, 3000);
+};
 function main_menuagain(convo) {
     convo.ask({
         attachment: {
@@ -277,6 +285,10 @@ function attractions_callback_menu(convo) {
                     "type": "postback",
                     "title": "Main Menu",
                     "payload": "again_payload"
+                }, {
+                    "type": "postback",
+                    "title": "Quit",
+                    "payload": "getoff"
                 }]
             }
         }
@@ -946,6 +958,12 @@ controller.hears(['^travel$'], 'message_received,facebook_postback', function (b
     });
 });
 // ======================================= Main Menu 3. Others 3.3.Local travel ENDS =========================================
+
+controller.hears(['^getoff$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        getout(convo);
+    });
+});
 
 
 // ============================================ TRIAL=====================================================================       

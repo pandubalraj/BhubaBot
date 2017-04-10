@@ -35,8 +35,8 @@ controller.api.thread_settings.menu([{
     },
     {
         "type": "postback",
-        "title": "Accomodations",
-        "payload": "accomodations"
+        "title": "Accomodation",
+        "payload": "accomodation"
     },
     {
         "type": "postback",
@@ -79,8 +79,8 @@ function main_menu(convo) {
                         },
                         {
                             'type': 'postback',
-                            'title': 'Accomodations',
-                            'payload': 'accomodations'
+                            'title': 'Accomodation',
+                            'payload': 'accomodation'
                         },
                         {
                             'type': 'postback',
@@ -113,8 +113,8 @@ function main_menuagain(convo) {
                         },
                         {
                             'type': 'postback',
-                            'title': 'Accomodations',
-                            'payload': 'accomodations'
+                            'title': 'Accomodation',
+                            'payload': 'accomodation'
                         },
                         {
                             'type': 'postback',
@@ -174,17 +174,17 @@ function initialconvo(convo) {
                     'template_type': 'generic',
                     'elements': [{
                             'title': 'Rasagolas',
-                            'image_url': 'http://3.bp.blogspot.com/-M914D8ReosQ/UbxuvHfT4kI/AAAAAAAAHCs/hJn2JaZmXRM/s640/IMG_0977.JPG'
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/Rasagolas.png'
                         }, {
                             "title": "Mishti Doi",
-                            "image_url": "https://ishitaunblogged.files.wordpress.com/2014/05/42.jpg?w=594&h=887"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/Mishti_Doi.png"
                         }, {
                             "title": "Arisa Sweet",
-                            "image_url": "http://www.indianetzone.com/photos_gallery/81/Arisa_Pitha.jpg"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/Arisa_Pitha.png"
                         },
                         {
                             "title": "Modaka",
-                            "image_url": "http://www.indianetzone.com/photos_gallery/93/1__Modaka_Oriya_Recipe.jpg"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/Modaka.png"
                         }
                     ]
                 }
@@ -198,17 +198,17 @@ function initialconvo(convo) {
                     'template_type': 'generic',
                     'elements': [{
                             'title': 'Tussar Silk Sarees',
-                            'image_url': 'https://beautyballs.files.wordpress.com/2012/01/scan00021.jpg?w=640&h=460'
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/Tussar_Silk_Sarees.png'
                         }, {
                             "title": "Paithni Sarees",
-                            "image_url": "http://www.indianetzone.com/photos_gallery/68/4_Paithani_Sarees.jpg"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/Paithani_Sarees.png"
                         }, {
                             "title": "Sambalpuri Silk Saree",
-                            "image_url": "http://www.indianetzone.com/photos_gallery/68/3_Sambalpuri_Saree.jpg"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/Sambalpuri_Saree.png"
                         },
                         {
                             "title": "Pochampally Ikat Saree",
-                            "image_url": "http://www.indianetzone.com/photos_gallery/89/1_Pochampally_Ikat_Saree.jpg"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/Pochampally_Ikat_Saree.png"
                         }
                     ]
                 }
@@ -298,7 +298,7 @@ controller.hears(event, 'message_received,facebook_postback', function (bot, mes
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Local Attractions in Bhubaneshwar',
-                        'image_url': 'http://www.manishjaishree.com/wp-content/uploads/2013/09/Picture21-1024x582.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/Local_attractions.png',
                         'subtitle': '',
                         'buttons': [{
                                 'type': 'postback',
@@ -337,7 +337,7 @@ controller.hears(['^shopping$', '^shopes$'], 'message_received,facebook_postback
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Ikat Fabrics',
-                        'image_url': 'https://s-media-cache-ak0.pinimg.com/736x/07/35/9b/07359b30c334d4a45fee523041fa78e2.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/Ikat_Cloth.png',
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://en.wikipedia.org/wiki/Ikat",
@@ -382,14 +382,6 @@ controller.hears(['^food$', "^trending foods$", "^dishes$", "^dish$", "^food$"],
         convo.say('Just Pick-it and Gobble it.Thats it… ')
         convo.say('These white spheres soaked with ambrosia take you directly to a place called Heaven. It is unbelievable. ')
         convo.say('You cannot forget Rasgolla,Chamcham..');
-        convo.ask({
-            "attachment": {
-                "type": "image",
-                "payload": {
-                    "url": "http://images.mapsofindia.com/my-india/Rasgulla-665x453.jpg"
-                }
-            }
-        });
         attractions_callback_menu(convo);
     });
 });
@@ -431,7 +423,7 @@ controller.hears(attraction, 'message_received,facebook_postback', function (bot
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Tourist Spots',
-                        'image_url': 'http://www.wondermondo.com/Images/SAmerica/Paraguay/AltoParana/MondayFalls2.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/MondayFalls2.png',
                         "buttons": [{
                                 "type": "postback",
                                 "title": "Konark Sun Temple",
@@ -688,27 +680,9 @@ controller.hears(['^noulocation$'], 'message_received,facebook_postback', functi
 }); 
 // ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.3. Udayagiri and Khandagiri caves--location ENDS ==================
 
-// ====================================== Main Menu  2.Accomodations ===============================================================
-controller.hears(['^accomodations$', '^stay$', '^rooms$', '^room details$', '^acomodation$', '^accommodation$'], 'message_received,facebook_postback', function (bot, message) {
+// ====================================== Main Menu  2.Accomodation ===============================================================
+controller.hears(['^accomodation$', '^stay$', '^rooms$', '^room details$', '^acomodation$', '^accommodation$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-          convo.ask({
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "button",
-                    "text": "Accomodation Details",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Trident Hotel",
-                        "payload": "trident"
-                    }, {
-                        "type": "postback",
-                        "title": "Mayfair Hotel",
-                        "payload": "mayfair"
-                    }]
-                }
-            }
-        });
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -748,17 +722,17 @@ controller.hears(['^trident$'], 'message_received,facebook_postback', function (
                     'template_type': 'generic',
                     'elements': [{
                             'title': 'Around View of Trident Hotel',
-                            'image_url': 'https://t-ec.bstatic.com/images/hotel/max1024x768/934/93405213.jpg'
+                            'image_url': 'https://bhubabot.blob.core.windows.net/images/trident_1.png'
                         }, {
                             "title": "Delux Rooms",
-                            "image_url": "https://t-ec.bstatic.com/images/hotel/max1024x768/934/93404524.jpg"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/trident_2.png"
                         }, {
                             "title": "Spacious Dinning Hall",
-                            "image_url": "https://s-ec.bstatic.com/images/hotel/max1024x768/315/31548804.jpg"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/trident_3.png"
                         },
                         {
                             "title": "Amazing & Beautiful Living Hall",
-                            "image_url": "https://s-ec.bstatic.com/images/hotel/max1024x768/315/31548484.jpg"
+                            "image_url": "https://bhubabot.blob.core.windows.net/images/trident_5.png"
                         }
                     ]
                 }
@@ -875,9 +849,10 @@ controller.hears(['^climate$', "^temperature$", '^weather$'], 'message_received,
                 convo.say('My Machine Learning Forecasting algorithm says that the temperature is going to hover around  27C - Sunny for all three days.');
                 convo.say('Night seems to be cooler at <20*>, and with cool breeze smearing aside, sets out to be perfect weather for a cozy walk.');
                 convo.say('So yeah, its not even next to perfect. Its perfect weather condition');
-            }
+                others_callback_menu(convo);
+        }
         });
-        others_callback_menu(convo);
+        
     });
 });
 // ============================== Main Menu 3. Others 3.1. Weather ENDS ==================================================
@@ -893,7 +868,7 @@ controller.hears(['^night$'], 'message_received,facebook_postback', function (bo
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Xstacy Lounge',
-                        'image_url': 'http://www.kosovoguide.com/repository/images/168/DSC06192_5816_thmb4.JPG',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/Xstacy_Lounge.png',
                         'subtitle': 'Xstacy lounge is a very hot and happening club that is usually filled with youngsters ',
                         "buttons": [{
                             "type": "web_url",
@@ -902,7 +877,7 @@ controller.hears(['^night$'], 'message_received,facebook_postback', function (bo
                         }]
                     },{
                         'title': 'Plaza Club - Swosti Premium',
-                        'image_url': 'http://www.kosovoguide.com/repository/images/168/DSC06189_5814_thmb4.JPG',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/Plaza_Club.png',
                         'subtitle': 'The club comes with a discotheque, indoor games like pool, billiards, indoor gulf, skee ball and regular family program packages which make it a day/night hot spot',
                         "buttons": [{
                             "type": "web_url",
@@ -911,7 +886,7 @@ controller.hears(['^night$'], 'message_received,facebook_postback', function (bo
                         }]
                     },{
                         'title': '10 Downing Street',
-                        'image_url': 'https://www.budapestindex.com/files/story/budapest-jam-pub2.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/10_Drowning_street.png',
                         'subtitle': ' It is one of the most happening places of Bhubaneswar. It is broadly known as TDS among the nightlife community',
                         "buttons": [{
                             "type": "web_url",
@@ -922,6 +897,7 @@ controller.hears(['^night$'], 'message_received,facebook_postback', function (bo
                 }
             }
         });
+        others_callback_menu(convo);
     });   
 });
 // ======================================= Main Menu 3. Others 3.2.Night Life ENDS =========================================
@@ -946,7 +922,7 @@ controller.hears(['^travel$'], 'message_received,facebook_postback', function (b
                         }]
                     },{
                         'title': 'Regional Plant Resource Centre (aka Botanical Garden)',
-                        'image_url': 'https://c1.staticflickr.com/3/2893/10806912666_15b31d2e8f_n.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/Botanical_Garden.png',
                         'subtitle': ' Enjoy the company of a galaxy of plants and flowers from around the world and no one\'s gonna bother you there',
                         "buttons": [{
                             "type": "web_url",
@@ -955,7 +931,7 @@ controller.hears(['^travel$'], 'message_received,facebook_postback', function (b
                         }]
                     },{
                         'title': 'Nandankanan',
-                        'image_url': 'http://www.indianetzone.com/photos_gallery/15/NandankananZP_8147.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/Nandankanan.png',
                         'subtitle': ' Nanadanakan is not a zoo, rather  it\'s a zoological garden.It has acres and acres of greenery.You\'ll love it',
                         "buttons": [{
                             "type": "web_url",
@@ -966,6 +942,7 @@ controller.hears(['^travel$'], 'message_received,facebook_postback', function (b
                 }
             }
         });  
+        others_callback_menu(convo);
     });
 });
 // ======================================= Main Menu 3. Others 3.3.Local travel ENDS =========================================

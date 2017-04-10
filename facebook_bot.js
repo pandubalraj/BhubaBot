@@ -96,6 +96,41 @@ function main_menu(convo) {
         convo.next();
     });
 };
+function main_menuagain(convo) {
+    convo.ask({
+        attachment: {
+            'type': 'template',
+            'payload': {
+                'template_type': 'generic',
+                'elements': [{
+                    'title': 'Bhubaneshwar-"City of Temples"',
+                    'image_url': 'http://www.indianetzone.com/photos_gallery/84/2_Mukteswara_Temple_4.jpg',
+                    'subtitle': '',
+                    'buttons': [{
+                            'type': 'postback',
+                            'title': 'Local Attractions',
+                            'payload': 'local attractions'
+                        },
+                        {
+                            'type': 'postback',
+                            'title': 'Accomodations',
+                            'payload': 'accomodations'
+                        },
+                        {
+                            'type': 'postback',
+                            'title': 'Others',
+                            'payload': 'others'
+                        }
+                    ]
+                }]
+            }
+        }
+    }, function (response, convo) {
+        // whoa, I got the postback payload as a response to my convo.ask!
+        convo.next();
+    });
+};
+
 
 // ================== starting with hi and start_payload=====================================================================
 var welcome_message = ['^hi$', '^start_payload$', '^hello$', '^start$', '^hey$', '^whatsup$', '^howsu$'];
@@ -253,7 +288,7 @@ function attractions_callback_menu(convo) {
 var event = ['^local attractions$', '^Attractions$']
 controller.hears(event, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('By the way do you the fact about Bhubaneshwar that ');
+        convo.say('By the way do you something about Bhubaneshwar!!');
         convo.say('It was ancient temple of Kalinga and Dhauli where the famous battle was fought between Emperor Ashoka and the Kalinga army');
         convo.say('So yeah, what is it you would like to know about?');
         convo.ask({
@@ -396,11 +431,12 @@ controller.hears(attraction, 'message_received,facebook_postback', function (bot
                 'payload': {
                     'template_type': 'generic',
                     'elements': [{
-                        'title': 'Location Attraction',
+                        'title': 'Tourist Spots',
+                        'image_url': 'http://www.wondermondo.com/Images/SAmerica/Paraguay/AltoParana/MondayFalls2.jpg',
                         "buttons": [{
                                 "type": "postback",
                                 "title": "Konark Sun Temple",
-                                "payload": "nandankanan"
+                                "payload": "konark"
                             }, {
                                 "type": "postback",
                                 "title": "Lingaraja temple",
@@ -446,6 +482,32 @@ controller.hears(['^konark$'], 'message_received,facebook_postback', function (b
             }
         });
         convo.ask({
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Do want know its location on google map???",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "yeah",
+                        "payload": "klocation"
+                    }, {
+                        "type": "postback",
+                        "title": "No",
+                        "payload": "noklocation"
+                    }]
+                }
+            }
+        });
+
+    });
+});
+// ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.1. Kunark Sun Temple ENDS ==================
+
+// ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.1. Kunark Sun Temple--location ==================
+controller.hears(['^klocation$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+         convo.ask({
             'attachment': {
                 'type': 'template',
                 'payload': {
@@ -453,7 +515,6 @@ controller.hears(['^konark$'], 'message_received,facebook_postback', function (b
                     'elements': [{
                         'title': 'Konark Sun Temple Map',
                         'image_url': 'https://maps.googleapis.com/maps/api/staticmap?center=konark+sun+temple&zoom=12&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:small%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple',
-                        'subtitle': 'The temple is UNESCO World Heritage Site.',
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://www.google.co.in/maps/place/Konark+Sun+Temple/@19.8876003,86.0923477,17z/data=!3m1!4b1!4m5!3m4!1s0x3a19f2a097819bbf:0xed9983ca391e3247!8m2!3d19.8875953!4d86.0945364?hl=en (https://www.google.co.in/maps/place/Konark+Sun+Temple/@19.8876003,86.0923477,17z/data=%213m1%214b1%214m5%213m4%211s0x3a19f2a097819bbf:0xed9983ca391e3247%218m2%213d19.8875953%214d86.0945364?hl=en)",
@@ -466,8 +527,13 @@ controller.hears(['^konark$'], 'message_received,facebook_postback', function (b
         });
         tourist_callback_menu(convo)
     });
-});
-// ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.1. Kunark Sun Temple ENDS ==================
+}); 
+controller.hears(['^noklocation$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        tourist_callback_menu(convo)
+    });
+}); 
+// ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.1. Kunark Sun Temple--location ENDS ==================
 
 // ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.2.Lingaraja Temple =========================
 controller.hears(['^lingaraja$'], 'message_received,facebook_postback', function (bot, message) {
@@ -493,7 +559,32 @@ controller.hears(['^lingaraja$'], 'message_received,facebook_postback', function
 
             }
         });
-        convo.ask({
+         convo.ask({
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Do want know its location on google map???",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "yeah",
+                        "payload": "llocation"
+                    }, {
+                        "type": "postback",
+                        "title": "No",
+                        "payload": "nollocation"
+                    }]
+                }
+            }
+        });
+    });
+});
+// ===========================  Main Menu  1. local attractions 1.3. Tourist Spots 1.3.2.Lingaraja Temple ENDS =================
+
+// ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.2.Lingaraja Templelocation ==================
+controller.hears(['^llocation$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+    convo.ask({
             'attachment': {
                 'type': 'template',
                 'payload': {
@@ -501,11 +592,10 @@ controller.hears(['^lingaraja$'], 'message_received,facebook_postback', function
                     'elements': [{
                         'title': 'Lingaraja temple',
                         'image_url': 'https://maps.googleapis.com/maps/api/staticmap?center=lingaraja+temple&zoom=15&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:small%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Clingaraja+temple',
-                        'subtitle': 'Temple is the most prominent mark of the city.Is the largest temple i the city..',
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://www.google.co.in/maps/place/Lingaraj+Temple/@20.2382433,85.8315622,17z/data=!3m1!4b1!4m5!3m4!1s0x3a19a726c8ffc807:0x212845f89456a2cd!8m2!3d20.2382383!4d85.8337509?hl=en (https://www.google.co.in/maps/place/Lingaraj+Temple/@20.2382433,85.8315622,17z/data=%213m1%214b1%214m5%213m4%211s0x3a19a726c8ffc807:0x212845f89456a2cd%218m2%213d20.2382383%214d85.8337509?hl=en)",
-                            "title": "Click here to view it on google maps.. "
+                            "title": "Click here to view.. "
                         }, ]
                     }]
                 }
@@ -514,8 +604,13 @@ controller.hears(['^lingaraja$'], 'message_received,facebook_postback', function
         });
         tourist_callback_menu(convo)
     });
-});
-// ===========================  Main Menu  1. local attractions 1.3. Tourist Spots 1.3.2.Lingaraja Temple ENDS =================
+}); 
+controller.hears(['^nollocation$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        tourist_callback_menu(convo)
+    });
+}); 
+// ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.2.Lingaraja Temple--location ENDS ==================
 
 //============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.3. Udayagiri and Khandagiri caves====
 controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function (bot, message) {
@@ -543,6 +638,31 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
             }
         });
         convo.ask({
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Do want know its location on google map???",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "yeah",
+                        "payload": "ulocation"
+                    }, {
+                        "type": "postback",
+                        "title": "No",
+                        "payload": "noulocation"
+                    }]
+                }
+            }
+        });
+    });
+});
+// =========================== Main Menu  1. local attractions 1.3. Tourist Spots 1.3.3. Udayagiri and Khandagiri caves ENDS =======
+
+// ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.3. Udayagiri and Khandagiri caves--location ==================
+controller.hears(['^ulocation$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+     convo.ask({
             'attachment': {
                 'type': 'template',
                 'payload': {
@@ -550,7 +670,6 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
                     'elements': [{
                         'title': 'Udayagiri and Khandagiri caves',
                         'image_url': 'https://maps.googleapis.com/maps/api/staticmap?center=udaygiri+and+khandigiri&zoom=13&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:small%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Ckonark+sun+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Clingaraja+temple&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cudaygiri+and+khandigiri&markers=size:small%7Ccolor:0xff0000%7Clabel:1%7Cudaygiri+and+khandigiri&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7Cudaygiri+and+khandigiri',
-                        'subtitle': 'Theses caves are partly natural and partly artificial caves of archaeological, historical and religious importance.. ',
                         "buttons": [{
                             "type": "web_url",
                             "url": "https://www.google.co.in/maps/place/Udayagiri+Jain+Caves/@20.2631202,85.7835363,17z/data=!3m1!4b1!4m5!3m4!1s0x3a19a7ec9910c597:0xc1d179a6679058f3!8m2!3d20.2631152!4d85.785725?hl=en",
@@ -558,13 +677,17 @@ controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function 
                         }, ]
                     }]
                 }
-
             }
         });
         tourist_callback_menu(convo)
     });
-});
-// =========================== Main Menu  1. local attractions 1.3. Tourist Spots 1.3.3. Udayagiri and Khandagiri caves ENDS =======
+}); 
+controller.hears(['^noulocation$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        tourist_callback_menu(convo)
+    });
+}); 
+// ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.3. Udayagiri and Khandagiri caves--location ENDS ==================
 
 // ====================================== Main Menu  2.Accomodations ===============================================================
 controller.hears(['^accomodations$', '^stay$', '^rooms$', '^room details$', '^acomodation$', '^accommodation$'], 'message_received,facebook_postback', function (bot, message) {
@@ -616,9 +739,9 @@ controller.hears(['^accomodations$', '^stay$', '^rooms$', '^room details$', '^ac
 // ====================================== Main Menu  2.Accomodations 2.1. Trident Hotel ===============================================================
 controller.hears(['^trident$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('The Trident Hotel is a 5 Star Delux hotel. It offers world class facilities. ');
-        convo.say('Nestled in the heart of Jaidev Vihar, Trident Bhubaneswar Hotel is an ideal spot from which to discover Bhubaneswar ');
-        convo.say('The hotel is not too far from the city center: just 03.00 Km away, and it normally takes about 25 minutes to reach the airport. ');
+        convo.say('A true 5 star with the attention to the detail, elegant service and absolutely stunning cuisine');
+        convo.say('Trident Bhubaneswar is a 15-minute drive from Bhubaneswar Airport. Bhubaneswar Railway Station is 6 km away');
+        convo.say('This property is also rated for the best value in Bhubaneshwar!');
         convo.say('Let me take you to the Gallery');
         convo.ask({
             attachment: {
@@ -626,18 +749,18 @@ controller.hears(['^trident$'], 'message_received,facebook_postback', function (
                 'payload': {
                     'template_type': 'generic',
                     'elements': [{
-                            'title': 'Aerial View of Cottages with Lagoon',
-                            'image_url': 'https://bhubabot.blob.core.windows.net/images/hotel_1.png'
+                            'title': 'Around View of Trident Hotel',
+                            'image_url': 'https://t-ec.bstatic.com/images/hotel/max1024x768/934/93405213.jpg'
                         }, {
-                            "title": "Evening View of Lagoon",
-                            "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_2.png"
+                            "title": "Delux Rooms",
+                            "image_url": "https://t-ec.bstatic.com/images/hotel/max1024x768/934/93404524.jpg"
                         }, {
-                            "title": "Lobby Mayfair Lagoon",
-                            "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_3.png"
+                            "title": "Spacious Dinning Hall",
+                            "image_url": "https://s-ec.bstatic.com/images/hotel/max1024x768/315/31548804.jpg"
                         },
                         {
-                            "title": "Evening View MAYFAIR Lagoon",
-                            "image_url": "https://bhubabot.blob.core.windows.net/images/hotel_4.png"
+                            "title": "Amazing & Beautiful Living Hall",
+                            "image_url": "https://s-ec.bstatic.com/images/hotel/max1024x768/315/31548484.jpg"
                         }
                     ]
                 }
@@ -750,12 +873,10 @@ controller.hears(['^climate$', "^temperature$", '^weather$'], 'message_received,
                 var forecast = JSON.stringify(JSON.parse(body)[0].WeatherText).replace(/"/g, "");
                 var temp = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Value);
                 var degree = JSON.stringify(JSON.parse(body)[0].Temperature.Metric.Unit).replace(/"/g, "");
-                convo.say('Do you know the temperature in Mars? ');
-                convo.say('It is not too bad for human occupation, though a bit unpredictable weather sometimes. Don’t be scared, you are welcome to colonize .');
-                convo.say('We will sure enjoy your company. Btw, the weather in Bhubaneshwar is next to perfect.');
+                convo.say('The weather in Bhubaneshwar is next to perfect.');
                 convo.say('My Machine Learning Forecasting algorithm says that the temperature is going to hover around  27C - Sunny for all three days.');
                 convo.say('Night seems to be cooler at <20*>, and with cool breeze smearing aside, sets out to be perfect weather for a cozy walk.');
-                convo.say('So yeah, its not even next to perfect. Its perfect weather condition')
+                convo.say('So yeah, its not even next to perfect. Its perfect weather condition');
             }
         });
         others_callback_menu(convo);
@@ -917,7 +1038,7 @@ controller.hears(["^what else$", "^what else do you know$"], 'message_received,f
 controller.on('message_received,facebook_postback', function (bot, message) {
     bot.reply(message, 'I am not sure what you are looking for. May be you can choose one of these');
     bot.startConversation(message, function (err, convo) {
-        main_menu(convo);
+        main_menuagain(convo);
     });
     return false;
 });

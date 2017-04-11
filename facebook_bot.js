@@ -243,25 +243,6 @@ controller.hears(again_payload, 'message_received,facebook_postback', function (
 });
 // ================================== again_payload ENDS =======================================================================
 
-// ================================ callback main_menu ==========================================================================
-function main_callback_menu(convo) {
-    convo.ask({
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "button",
-                "text": "What do you want to do next?",
-                "buttons": [{
-                    "type": "postback",
-                    "title": "Main Menu",
-                    "payload": "again_payload"
-                }]
-            }
-        }
-    });
-};
-// ============================= callback main_menu ENDS ==========================================================================
-
 // ============================= Attractions_callback_menu ========================================================================
 function attractions_callback_menu(convo) {
     convo.ask({
@@ -273,7 +254,27 @@ function attractions_callback_menu(convo) {
                 "buttons": [{
                     "type": "postback",
                     "title": "Go Back",
-                    "payload": "local attractions"
+                    "payload": "local attractions again"
+                }, {
+                    "type": "postback",
+                    "title": "Main Menu",
+                    "payload": "again_payload"
+                }]
+            }
+        }
+    });
+};
+function attractions_shopping_callback_menu(convo) {
+    convo.ask({
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text": "What do you want to do next?",
+                "buttons": [{
+                    "type": "postback",
+                    "title": "Go Back",
+                    "payload": "shopping again"
                 }, {
                     "type": "postback",
                     "title": "Main Menu",
@@ -292,6 +293,39 @@ controller.hears(event, 'message_received,facebook_postback', function (bot, mes
         convo.say('By the way do you know something about Bhubaneshwar!!');
         convo.say('It was ancient temple of Kalinga and Dhauli where the famous battle was fought between Emperor Ashoka and the Kalinga army');
         convo.say('So yeah, what is it you would like to know about?');
+        convo.ask({
+            attachment: {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Local Attractions in Bhubaneshwar',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/Local_attractions.png',
+                        'subtitle': '',
+                        'buttons': [{
+                                'type': 'postback',
+                                'title': 'Shopping',
+                                'payload': 'shopping'
+                            },
+                            {
+                                'type': 'postback',
+                                'title': 'Food',
+                                'payload': 'food'
+                            },
+                            {
+                                'type': 'postback',
+                                'title': 'Tourist Spots',
+                                'payload': 'tourist spots'
+                            }
+                        ]
+                    }]
+                }
+            }
+        });
+    });
+});
+controller.hears(['^local attractions again$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
         convo.ask({
             attachment: {
                 'type': 'template',
@@ -358,10 +392,76 @@ controller.hears(['^shopping$', '^shopes$'], 'message_received,facebook_postback
                 }
             }
         });
-        attractions_callback_menu(convo);
+        convo.say('I can guide from where to shop these things.')
+        convo.ask({
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "What do you want to buy???",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "Saree & Fabrics",
+                        "payload": "saree"
+                    }, {
+                        "type": "postback",
+                        "title": "Metal Sculptures",
+                        "payload": "metal"
+                    }]
+                }
+            }
+        });
+    });
+});
+controller.hears(['^shopping again$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.ask({
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "What do you want to buy???",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "Saree & Fabrics",
+                        "payload": "saree"
+                    }, {
+                        "type": "postback",
+                        "title": "Metal Sculptures",
+                        "payload": "metal"
+                    }]
+                }
+            }
+        });
+     attractions_callback_menu(convo) 
     });
 });
 //================================ Main Menu  1. local attractions 1.1. Shopping  ENDS =======================================
+
+//================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Saree =======================================
+ controller.hears(['^saree$'], 'message_received,facebook_postback', function (bot, message) {
+   bot.startConversation(message, function (err, convo) {
+        convo.say('To buy silk and cotton textiles, head out to shops like Mahalakshmi Textiles that is stocked with interesting apparels');
+        convo.say('It is less than a Km from Trident Hotel');
+        convo.say('and just 6.4 Km away from Mayfair Lagoon Hotel');
+        attractions_shopping_callback_menu(convo)
+ });
+});
+//================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Saree ENDS ==================================
+
+//================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Metal =======================================
+controller.hears(['^metal$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.say('Utkalika is one stop for buying Orissa handicrafts');
+        convo.say('It is just 10 Km away from Trident Hotel');
+        convo.say('and just 4.6 Km away from Mayfair Lagoon Hotel');
+        convo.say('Orissa Art And Craft is another place to browse through the collection of metallic works that are locally known as Tarakashi');
+        convo.say('This is just a Km away from trident Hotel');
+        convo.say('Around 7.4 km from Mayfair lagoon Hotel');
+        attractions_shopping_callback_menu(convo)
+ });
+});
+//================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Metal ENDS ==================================
 
 // ============================ Main Menu  1. local attractions 1.2. Food =====================================================     
 
@@ -399,7 +499,7 @@ function tourist_callback_menu(convo) {
                 "buttons": [{
                     "type": "postback",
                     "title": "Go Back",
-                    "payload": "tourist spots"
+                    "payload": "tourist spots again"
                 }, {
                     "type": "postback",
                     "title": "Main Menu",
@@ -444,6 +544,38 @@ controller.hears(attraction, 'message_received,facebook_postback', function (bot
                 }
             }
         });
+    });
+});
+controller.hears(['^tourist spots again$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.ask({
+            'attachment': {
+                'type': 'template',
+                'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Tourist Spots',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/MondayFalls2.png',
+                        "buttons": [{
+                                "type": "postback",
+                                "title": "Konark Sun Temple",
+                                "payload": "konark"
+                            }, {
+                                "type": "postback",
+                                "title": "Lingaraja temple",
+                                "payload": "lingaraja"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Udaygiri And Khandagiri caves",
+                                "payload": "udaygiri"
+                            }
+                        ]
+                    }]
+                }
+            }
+        });
+    attractions_callback_menu(convo);
     });
 });
 // ============================= Main Menu  1. local attractions 1.3. Tourist Spots  ENDS =========================================
@@ -491,7 +623,6 @@ controller.hears(['^konark$'], 'message_received,facebook_postback', function (b
                 }
             }
         });
-
     });
 });
 // ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.1. Kunark Sun Temple ENDS ==================
@@ -710,6 +841,26 @@ controller.hears(['^accomodation$', '^stay$', '^rooms$', '^room details$', '^aco
     });
 });
 //==================================== Main Menu  2.Accomodations ENDS =====================================
+function accomodation_callback_menu(convo) {
+    convo.ask({
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text": "What do you want to do next?",
+                "buttons": [{
+                    "type": "postback",
+                    "title": "Go Back",
+                    "payload": "accomodation"
+                }, {
+                    "type": "postback",
+                    "title": "Main Menu",
+                    "payload": "again_payload"
+                }]
+            }
+        }
+    });
+}
 // ====================================== Main Menu  2.Accomodations 2.1. Trident Hotel ===============================================================
 controller.hears(['^trident$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
@@ -739,7 +890,7 @@ controller.hears(['^trident$'], 'message_received,facebook_postback', function (
                 }
             }
         });
-        main_menu(convo);
+       accomodation_callback_menu(convo)
     });
 });
 //==================================== Main Menu  2.Accomodations 2.1. Trident Hotel ENDS =====================================
@@ -774,7 +925,7 @@ controller.hears(['^mayfair$'], 'message_received,facebook_postback', function (
                 }
             }
         });
-        main_menu(convo);
+       accomodation_callback_menu(convo)
     });
 });
 //==================================== Main Menu  2.Accomodations  2.2.Mayfair ENDS =====================================
@@ -813,6 +964,39 @@ controller.hears(['^others$'], 'message_received,facebook_postback', function (b
         attachment: attachment
     });
 });
+controller.hears(['^others again$'], 'message_received,facebook_postback', function (bot, message) {
+    bot.startConversation(message, function (err, convo) {
+        convo.ask({
+         "attachment" : {
+            'type': 'template',
+            'payload': {
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Other Details',
+                        'image_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Malatipatpur_Bus_Stand.jpg/400px-Malatipatpur_Bus_Stand.jpg',
+                        'buttons': [{
+                                'type': 'postback',
+                                'title': 'Weather',
+                                'payload': 'climate'
+                            },
+                            {
+                                'type': 'postback',
+                                'title': 'Night Life',
+                                'payload': 'night'
+                            },
+                            {
+                                'type': 'postback',
+                                'title': 'Local Travel',
+                                'payload': 'travel'
+                            }
+                        ]
+                    }]
+                }
+          }
+      });
+    });
+    main_menuagain(convo);
+});
 // ==================================== Main Menu 3. Others  ENDS ===================================================
 
 // ==================================== others_callback_menu ========================================================
@@ -826,7 +1010,7 @@ function others_callback_menu(convo) {
                 "buttons": [{
                     "type": "postback",
                     "title": "Go Back",
-                    "payload": "others"
+                    "payload": "others again"
                 }, {
                     "type": "postback",
                     "title": "Main Menu",

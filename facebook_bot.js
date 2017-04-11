@@ -70,7 +70,7 @@ function main_menu(convo) {
                 'template_type': 'generic',
                 'elements': [{
                     'title': 'Bhubaneshwar-"City of Temples"',
-                    'image_url': 'http://www.indianetzone.com/photos_gallery/84/2_Mukteswara_Temple_4.jpg',
+                    'image_url': 'https://bhubabot.blob.core.windows.net/images/cityOfTemples.png',
                     'subtitle': '',
                     'buttons': [{
                             'type': 'postback',
@@ -140,7 +140,7 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
     bot.startConversation(message, function (err, convo) {
         convo.say('Hi Geek, I am Bhuba-Bot. Nice to meet you ☺ ');
         convo.say('Namascara and Swaagta to my city Bhubaneshwar');
-        convo.say('This is how we say hello and welcome in oriya.........language we speak here!! ☺');
+        convo.say('This is how we say hello and welcome in oriya..language we speak here!! ☺');
         convo.ask({
             "attachment": {
                 "type": "template",
@@ -166,7 +166,8 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
 
 // ========================= option after introduction ========================================================================
 function initialconvo(convo) {
-     convo.say('This is a lovely place having a lot of history behind it. Food is awesome and a fantastic weather in April');
+     convo.say('This is a lovely place having a lot of history behind it'); 
+     convo.say('Food is awesome and a fantastic weather in April');
      convo.say('It has a great eateries wherein you could savor the original tastes of Odisha');
      convo.ask({
             attachment: {
@@ -295,7 +296,7 @@ var event = ['^local attractions$', '^Attractions$']
 controller.hears(event, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('By the way do you know something about Bhubaneshwar!!');
-        convo.say('It was ancient temple of Kalinga and Dhauli where the famous battle was fought between Emperor Ashoka and the Kalinga army');
+        convo.say('Here Kalinga and Dhauli where the famous battle was fought between Emperor Ashoka and the Kalinga army');
         convo.say('So yeah, what is it you would like to know about?');
         convo.ask({
             attachment: {
@@ -405,7 +406,7 @@ controller.hears(['^shopping$', '^shopes$'], 'message_received,facebook_postback
                     "text": "What do you want to buy???",
                     "buttons": [{
                         "type": "postback",
-                        "title": "Saree & Fabrics",
+                        "title": "Sarees & Fabrics",
                         "payload": "saree"
                     }, {
                         "type": "postback",
@@ -427,7 +428,7 @@ controller.hears(['^shopping again$'], 'message_received,facebook_postback', fun
                     "text": "I am here again.what to want to buy ",
                     "buttons": [{
                         "type": "postback",
-                        "title": "Saree & Fabrics",
+                        "title": "Sarees & Fabrics",
                         "payload": "saree"
                     }, {
                         "type": "postback",
@@ -444,7 +445,7 @@ controller.hears(['^shopping again$'], 'message_received,facebook_postback', fun
 //================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Saree =======================================
  controller.hears(['^saree$'], 'message_received,facebook_postback', function (bot, message) {
    bot.startConversation(message, function (err, convo) {
-        convo.say('To buy silk and cotton textiles, head out to shops like Mahalakshmi Textiles that is stocked with interesting apparels');
+        convo.say('To buy silk and cotton textiles, you can head out to shops Mahalakshmi Textiles that is stocked with interesting apparels');
         convo.say('It is less than a Km from Trident Hotel');
         convo.say('and just 6.4 Km away from Mayfair Lagoon Hotel');
         attractions_shopping_callback_menu(convo);
@@ -601,7 +602,7 @@ controller.hears(['^konark$'], 'message_received,facebook_postback', function (b
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Konark Sun Temple',
-                        'image_url': 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Konark_sun_temple_from_the_front.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/konark.png',
                         'subtitle': 'The temple is UNESCO World Heritage Site.',
                         "buttons": [{
                             "type": "web_url",
@@ -830,7 +831,7 @@ controller.hears(['^accomodation$', '^stay$', '^rooms$', '^room details$', '^aco
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Accomodation Hotels',
-                        'image_url': 'http://farm6.staticflickr.com/5297/5493666299_782b25d2f7_z.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/accomodation.png',
                         'subtitle': '',
                         "buttons": [{
                            'type': 'postback',
@@ -948,7 +949,7 @@ controller.hears(['^others$'], 'message_received,facebook_postback', function (b
             'template_type': 'generic',
             'elements': [{
                 'title': 'Other Details',
-                'image_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Malatipatpur_Bus_Stand.jpg/400px-Malatipatpur_Bus_Stand.jpg',
+                'image_url': 'https://bhubabot.blob.core.windows.net/images/otherDetails.png',
                 'buttons': [{
                         'type': 'postback',
                         'title': 'Weather',
@@ -1060,7 +1061,7 @@ controller.hears(['^night$'], 'message_received,facebook_postback', function (bo
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'The Zaika',
-                        'image_url': 'https://media-cdn.tripadvisor.com/media/photo-s/04/67/f7/23/the-zaika.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/restro.png',
                         'subtitle': 'Awesome Indian food , specially Butter Chicken, Nalli Nihari and Fish Amritsar. Great ambience and good service. A must visit in Bhubneshwar',
                         "buttons": [{
                             "type": "web_url",
@@ -1114,7 +1115,7 @@ controller.hears(['^travel$'], 'message_received,facebook_postback', function (b
                     'template_type': 'generic',
                     'elements': [{
                         'title': 'Ekamra Haat',
-                        'image_url': 'https://upload.wikimedia.org/wikipedia/commons/7/75/Odia_Handicraft_At_Ekamra_haat_Bhubaneswar.jpg',
+                        'image_url': 'https://bhubabot.blob.core.windows.net/images/ekamraHaat.png',
                         'subtitle': 'It is has nice ambience and very quite place ',
                         "buttons": [{
                             "type": "web_url",

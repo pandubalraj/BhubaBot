@@ -238,7 +238,7 @@ var again_payload = ["again_payload", "^main menu$", "^index$", "^menu$", "^cont
 // again_payload on go back menu option
 controller.hears(again_payload, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        main_menu(convo);
+        main_menuagain(convo);
     });
 });
 // ================================== again_payload ENDS =======================================================================
@@ -250,7 +250,7 @@ function attractions_callback_menu(convo) {
             "type": "template",
             "payload": {
                 "template_type": "button",
-                "text": "What do you want to do next?",
+                "text": "You can select the following to go back !!!!!!!!!",
                 "buttons": [{
                     "type": "postback",
                     "title": "Go Back",
@@ -270,8 +270,12 @@ function attractions_shopping_callback_menu(convo) {
             "type": "template",
             "payload": {
                 "template_type": "button",
-                "text": "What do you want to do next?",
+                "text": "You can select the following to go back !!!!!!!!!",
                 "buttons": [{
+                    "type": "postback",
+                    "title": "Attraction Menu",
+                    "payload": "local attractions again"
+                },{
                     "type": "postback",
                     "title": "Go Back",
                     "payload": "shopping again"
@@ -420,7 +424,7 @@ controller.hears(['^shopping again$'], 'message_received,facebook_postback', fun
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": "What do you want to buy???",
+                    "text": "I am here again.what to want to buy ",
                     "buttons": [{
                         "type": "postback",
                         "title": "Saree & Fabrics",
@@ -433,7 +437,6 @@ controller.hears(['^shopping again$'], 'message_received,facebook_postback', fun
                 }
             }
         });
-     attractions_callback_menu(convo) 
     });
 });
 //================================ Main Menu  1. local attractions 1.1. Shopping  ENDS =======================================
@@ -444,7 +447,7 @@ controller.hears(['^shopping again$'], 'message_received,facebook_postback', fun
         convo.say('To buy silk and cotton textiles, head out to shops like Mahalakshmi Textiles that is stocked with interesting apparels');
         convo.say('It is less than a Km from Trident Hotel');
         convo.say('and just 6.4 Km away from Mayfair Lagoon Hotel');
-        attractions_shopping_callback_menu(convo)
+        attractions_shopping_callback_menu(convo);
  });
 });
 //================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Saree ENDS ==================================
@@ -495,12 +498,16 @@ function tourist_callback_menu(convo) {
             "type": "template",
             "payload": {
                 "template_type": "button",
-                "text": "What do you want to do next?",
+                "text": "You can select the following to go back !!!!!!!!!",
                 "buttons": [{
                     "type": "postback",
                     "title": "Go Back",
                     "payload": "tourist spots again"
-                }, {
+                },{
+                    "type": "postback",
+                    "title": "Local Attraction Menu",
+                    "payload": "local attractions again"
+                },{
                     "type": "postback",
                     "title": "Main Menu",
                     "payload": "again_payload"
@@ -583,8 +590,9 @@ controller.hears(['^tourist spots again$'], 'message_received,facebook_postback'
 // ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.1. Kunark Sun Temple ====================
 controller.hears(['^konark$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('Konark Sun Temple was built in the 13th Century and is among the Seven Wonders of India. It’s also a UNESCO World Heritage Site. ')
-        convo.say('Did you know an interesting fact? The wheels of the temple are sundials which can be used to calculate time accurately to a minute including day and night!!!')
+        convo.say('Konark Sun Temple was built in the 13th Century and is among the Seven Wonders of India.')
+        convo.say('Did you know an interesting fact? ');
+        convo.say('The wheels of the temple are sundials which can be used to calculate time accurately to a minute including day and night!!!')
         convo.say('😲');
         convo.ask({
             'attachment': {
@@ -847,7 +855,7 @@ function accomodation_callback_menu(convo) {
             "type": "template",
             "payload": {
                 "template_type": "button",
-                "text": "What do you want to do next?",
+                "text": "You can select the following to go back !!!!!!!!!",
                 "buttons": [{
                     "type": "postback",
                     "title": "Go Back",
@@ -995,7 +1003,6 @@ controller.hears(['^others again$'], 'message_received,facebook_postback', funct
           }
       });
     });
-    main_menuagain(convo);
 });
 // ==================================== Main Menu 3. Others  ENDS ===================================================
 
@@ -1006,7 +1013,7 @@ function others_callback_menu(convo) {
             "type": "template",
             "payload": {
                 "template_type": "button",
-                "text": "What do you want to do next?",
+                "text": "You can select the following to go back !!!!!!!!!",
                 "buttons": [{
                     "type": "postback",
                     "title": "Go Back",
@@ -1052,6 +1059,15 @@ controller.hears(['^night$'], 'message_received,facebook_postback', function (bo
                 'payload': {
                     'template_type': 'generic',
                     'elements': [{
+                        'title': 'The Zaika',
+                        'image_url': 'https://media-cdn.tripadvisor.com/media/photo-s/04/67/f7/23/the-zaika.jpg',
+                        'subtitle': 'Awesome Indian food , specially Butter Chicken, Nalli Nihari and Fish Amritsar. Great ambience and good service. A must visit in Bhubneshwar',
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.zomato.com/bhubaneswar/zaika-pal-heights-jayadev-vihar/reviews",
+                            "title": "Click here to know its reviews..... "
+                        }]
+                    },{
                         'title': 'Xstacy Lounge',
                         'image_url': 'https://bhubabot.blob.core.windows.net/images/Xstacy_Lounge.png',
                         'subtitle': 'Xstacy lounge is a very hot and happening club that is usually filled with youngsters ',

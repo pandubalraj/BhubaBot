@@ -138,7 +138,7 @@ var welcome_message = ['^hi$', '^start_payload$', '^hello$', '^start$', '^hey$',
 
 controller.hears(welcome_message, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
-        convo.say('Hi Geek, I am Bhuba-Bot. Nice to meet you ☺ ');
+        convo.say('Hi, I am Bhuba-Bot. Nice to meet you ☺ ');
         convo.say('Namascara and Swaagta to my city Bhubaneshwar');
         convo.say('This is how we say hello and welcome in oriya..language we speak here!! ☺');
         convo.ask({
@@ -149,7 +149,7 @@ controller.hears(welcome_message, 'message_received,facebook_postback', function
                     "text": "Are you gonna be bhubaneshwar First time???",
                     "buttons": [{
                         "type": "postback",
-                        "title": "yeah",
+                        "title": "Yeah",
                         "payload": "first"
                     }, {
                         "type": "postback",
@@ -365,7 +365,8 @@ controller.hears(['^local attractions again$'], 'message_received,facebook_postb
 // =====================================Main Menu  1. local attractions ENDS =====================================================
 
 // ============================== Main Menu  1. local attractions 1.1. Shopping ===================================================
-controller.hears(['^shopping$', '^shopes$'], 'message_received,facebook_postback', function (bot, message) {
+var shop = ['^shopping$', '^shopes$']
+controller.hears(shop, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('I can help you with shopping all the time............');
         convo.say('For those who are fond of traditional fabrics......then this is the place to shop');
@@ -443,7 +444,8 @@ controller.hears(['^shopping again$'], 'message_received,facebook_postback', fun
 //================================ Main Menu  1. local attractions 1.1. Shopping  ENDS =======================================
 
 //================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Saree =======================================
- controller.hears(['^saree$'], 'message_received,facebook_postback', function (bot, message) {
+var saree = ['^saree$','^sarees$']
+ controller.hears(saree, 'message_received,facebook_postback', function (bot, message) {
    bot.startConversation(message, function (err, convo) {
         convo.say('To buy silk and cotton textiles, you can head out to shops Mahalakshmi Textiles that is stocked with interesting apparels');
         convo.say('It is less than a Km from Trident Hotel');
@@ -454,7 +456,8 @@ controller.hears(['^shopping again$'], 'message_received,facebook_postback', fun
 //================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Saree ENDS ==================================
 
 //================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Metal =======================================
-controller.hears(['^metal$'], 'message_received,facebook_postback', function (bot, message) {
+var metal = ['^metal$','^sculpture$','^sculptures$']
+controller.hears(metal, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('Utkalika is one stop for buying Orissa handicrafts');
         convo.say('It is just 10 Km away from Trident Hotel');
@@ -468,8 +471,8 @@ controller.hears(['^metal$'], 'message_received,facebook_postback', function (bo
 //================================ Main Menu  1. local attractions 1.1. Shopping 1.1.1 Metal ENDS ==================================
 
 // ============================ Main Menu  1. local attractions 1.2. Food =====================================================     
-
-controller.hears(['^food$', "^trending foods$", "^dishes$", "^dish$", "^food$"], 'message_received,facebook_postback', function (bot, message) {
+var food = ['^food$', "^trending foods$", "^dishes$", "^dish$", "^food$"]
+controller.hears(food, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('Bhubaneshwar has the traditional Odisha delicacies as a major tourism center in India');
         convo.say('Panchana Phutana special mixture used in most of dishes,Typically Odisha Meal tastes awsome too. ');
@@ -520,7 +523,7 @@ function tourist_callback_menu(convo) {
 //================================== tourists spots menu callback  ENDS ========================================================
 
 //  ============================ Main Menu  1. local attractions 1.3. Tourist Spots ============================================
-var attraction = ['^tourist spots$', "^sight seeing$", "^tourist$", "^place to visit$", "^place to travel$", "^refreshment$", "^place to see$"];
+var attraction = ['^tourist spots$', "^sight seeing$", "^tourist$", "^place to visit$","^places to visit$", "^place to travel$","^places to travel$", "^refreshment$", "^place to see$","^places to see$"];
 
 controller.hears(attraction, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
@@ -589,7 +592,8 @@ controller.hears(['^tourist spots again$'], 'message_received,facebook_postback'
 // ============================= Main Menu  1. local attractions 1.3. Tourist Spots  ENDS =========================================
 
 // ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.1. Kunark Sun Temple ====================
-controller.hears(['^konark$'], 'message_received,facebook_postback', function (bot, message) {
+var konark = ['^konark$','^Konark Sun Temple$','^sun temple$']
+controller.hears(konark, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('Konark Sun Temple was built in the 13th Century and is among the Seven Wonders of India.')
         convo.say('Did you know an interesting fact? ');
@@ -745,7 +749,7 @@ controller.hears(['^nollocation$'], 'message_received,facebook_postback', functi
 // ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.2.Lingaraja Temple--location ENDS ==================
 
 //============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.3. Udayagiri and Khandagiri caves====
-controller.hears(['^udaygiri$'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^udaygiri$','^Udayagiri and Khandagiri caves$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('I learnt natural caves were created without hand or shaping tools.')
         convo.say('Many Saintly embodiments takes shelter here to realize true nature with the undeterred self. ')
@@ -904,7 +908,7 @@ controller.hears(['^trident$'], 'message_received,facebook_postback', function (
 });
 //==================================== Main Menu  2.Accomodations 2.1. Trident Hotel ENDS =====================================
 // ====================================== Main Menu  2.Accomodations 2.2.Mayfair ===============================================================
-controller.hears(['^mayfair$'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^mayfair$','^lagoon$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('The Mayfair hotel is a 5 Star Delux hotel. It offers world class facilities. ');
         convo.say('And by the way, did you know, it has a well-equipped gymnasium and a lovely pool? ');
@@ -1031,7 +1035,8 @@ function others_callback_menu(convo) {
 // ==================================== others_callback_menu ENDS ========================================================
     
 // ============================ Main Menu 3. Others 3.1. Weather =========================================================     
-controller.hears(['^climate$', "^temperature$", '^weather$'], 'message_received,facebook_postback', function (bot, message) {
+var temp = ['^climate$', "^temperature$", '^weather$']
+controller.hears(temp, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         request('http://apidev.accuweather.com/currentconditions/v1/1-189781_1_AL.json?language=en&apikey=hoArfRosT1215', function (error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -1050,8 +1055,9 @@ controller.hears(['^climate$', "^temperature$", '^weather$'], 'message_received,
 });
 // ============================== Main Menu 3. Others 3.1. Weather ENDS ==================================================
 
-// ====================================== Main Menu 3. Others 3.2.Night Life ===============================================      
-controller.hears(['^night$'], 'message_received,facebook_postback', function (bot, message) {
+// ====================================== Main Menu 3. Others 3.2.Night Life ===============================================  
+var restro = ['^night$','^restaurant$','^restaurants$','^night clubs$','^clubs$','^club$']    
+controller.hears(restro, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.say('want to get crazy and adventurous at night!You can try out the following places');
         convo.ask({
@@ -1104,8 +1110,9 @@ controller.hears(['^night$'], 'message_received,facebook_postback', function (bo
 });
 // ======================================= Main Menu 3. Others 3.2.Night Life ENDS =========================================
 
-// ====================================== Main Menu 3. Others 3.3.Local travel ===============================================      
-controller.hears(['^travel$'], 'message_received,facebook_postback', function (bot, message) {
+// ====================================== Main Menu 3. Others 3.3.Local travel ===============================================  
+var travel =  ['^travel$','^local travel$','^other places to go$','^other places to visit$']
+controller.hears(travel, 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
        convo.say('Want to get crazy and adventurous at night!You can try out the following places');
         convo.ask({
@@ -1204,7 +1211,7 @@ controller.hears(["^what do you know about me$", "^do you know me$"], 'message_r
 controller.hears(["^what else$", "^what else do you know$"], 'message_received,facebook_postback', function (bot, message) {
     bot.reply(message, "I hope you might be looking among these");
     bot.startConversation(message, function (err, convo) {
-        main_menu(convo);
+        main_menuagain(convo);
     });
 });
 // ===============================TRIAL===========================================================================       
@@ -1214,7 +1221,7 @@ controller.hears(["^what else$", "^what else do you know$"], 'message_received,f
 controller.on('message_received,facebook_postback', function (bot, message) {
     bot.reply(message, 'I am not sure what you are looking for. May be you can choose one of these');
     bot.startConversation(message, function (err, convo) {
-        main_menuagain(convo);
+         main_menuagain(convo);
     });
     return false;
 });

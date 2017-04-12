@@ -11,10 +11,11 @@ app.set('view engine', 'jade')
 
 app.get('/privacy_policy', function (req, res)
 {
+    
     res.render(index)
 });
  
-app.listen(5555)
+app.listen(process.env.PORT || process.env.port || 5555)
 
 // controller bot definition
 var controller = Botkit.facebookbot({

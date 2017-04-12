@@ -7,7 +7,7 @@ var express = require('express')
 var app = express()
 
 app.get('/privacy_policy', function (req, res) {
-     res.sendFile('privacy_policy.html')
+     res.sendFile('/privacy_policy.html')
 })
 
 // controller bot definition

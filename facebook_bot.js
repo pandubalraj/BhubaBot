@@ -5,6 +5,7 @@ var opn = require('opn')
 var request = require('request')
 var express = require('express')
 var app = express()
+var fs = require('fs')
 
 app.get('/privacy_policy', function (req, res) {
 fs.readFile(__dirname + '/privacy_policy.html', 'utf8', function(err, text){

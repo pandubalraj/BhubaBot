@@ -13,8 +13,6 @@ fs.readFile(__dirname + '/privacy_policy.html', 'utf8', function(err, text){
     });
 })
 
-app.listen(process.env.port ||process.env.PORT || 3000 )
-
 // controller bot definition
 var controller = Botkit.facebookbot({
     debug: true,

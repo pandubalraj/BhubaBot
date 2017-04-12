@@ -5,7 +5,8 @@ var opn = require('opn')
 var request = require('request')
 var express = require('express')
 var app = express()
-
+ 
+app.set('views',__dirname+'/views')
 app.set('view engine', 'jade')
 
 app.get('/privacy_policy', function (req, res)

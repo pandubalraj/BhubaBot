@@ -3,6 +3,15 @@ var os = require('os')
 var localtunnel = require('localtunnel')
 var opn = require('opn')
 var request = require('request')
+var express = require('express')
+var app = express()
+
+app.set('view engine', 'ejs');
+
+app.get('/privacy_policy', function (req, res)
+{
+    res.render('privacy_policy.html');
+});
 
 // controller bot definition
 var controller = Botkit.facebookbot({

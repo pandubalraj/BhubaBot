@@ -6,7 +6,9 @@
   "dependencies": {
     "botkit": "^0.5.1",
     "opn": "^4.0.2",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "jade":"^1.11.0",
+    "express":"^4.15.2"
   },
   "scripts": {
     "start": "node facebook_bot.js"

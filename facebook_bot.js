@@ -826,7 +826,7 @@ controller.hears(['^noulocation$'], 'message_received,facebook_postback', functi
 // ============================ Main Menu  1. local attractions 1.3. Tourist Spots 1.3.3. Udayagiri and Khandagiri caves--location ENDS ==================
 
 // ====================================== Main Menu  2.Accomodation ===============================================================
-controller.hears(['^accomodation$', '^stay$', '^rooms$', '^room details$', '^acomodation$', '^accommodation$'], 'message_received,facebook_postback', function (bot, message) {
+controller.hears(['^acco$','^accomodation$', '^stay$', '^rooms$', '^room details$', '^acomodation$', '^accommodation$'], 'message_received,facebook_postback', function (bot, message) {
     bot.startConversation(message, function (err, convo) {
         convo.ask({
             attachment: {

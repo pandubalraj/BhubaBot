@@ -6,13 +6,13 @@ var request = require('request')
 var express = require('express')
 var app = express()
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'jade')
 
 app.get('/privacy_policy', function (req, res)
 {
-    res.render('privacy_policy.html')
+    res.render(index)
 });
-
+ 
 app.listen(process.env.PORT || process.env.port || 5555)
 
 // controller bot definition

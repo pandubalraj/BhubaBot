@@ -3,6 +3,19 @@ var os = require('os')
 var localtunnel = require('localtunnel')
 var opn = require('opn')
 var request = require('request');
+var http = require('http');
+var fs = require("fs");
+ 
+// server privacy policy url
+http.createServer(function(request, response) {
+if(request.url === "/privacy_policy"){
+   fs.readFile("privacy_policy.html", function (err, data) {
+      response.writeHead(200, {'Content-Type': 'text/html'});
+      response.write(data);
+      response.end();
+   });
+}
+}).listen((process.env.PORT || process.env.port || 3000);
 
 // controller bot definition
 var controller = Botkit.facebookbot({

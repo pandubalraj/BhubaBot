@@ -8,7 +8,8 @@
     "opn": "^4.0.2",
     "request": "^2.81.0",
     "jade":"^1.11.0",
-    "express":"^4.15.2"
+    "express":"^4.15.2",
+    "path": "^0.12.7"
   },
   "scripts": {
     "start": "node facebook_bot.js"
